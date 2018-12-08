@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+		.hidden {
+		  display: none !important;
+		}
+
+		.wrapper {
+		  border: 2px solid black;
+		  padding: 20px;
+		  width: 96%;
+		  margin: auto;
+		  margin-top: 5px;
+		  margin-bottom: 5px;
+		}
+
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1>All Profiles <button onclick="loadProfiles()">Load Profiles</button></h1>
+			<div id="content" style="border: 1px solid gray;"></div>
+			</div>
+		<div id="user-profile-template" class="hidden">
+			<div class="wrapper">
+				<h4>${data.title}</h4>
+				<div>${data.desc}</div>
+			</div>
+		</div>
+		<script>
+			function loadProfiles() {
+			  var data = [{
+				  title: "Vinod Selvin",
+				  desc: "Loves coding"
+				},
+				{
+				  title: "John Doe",
+				  desc: "John Doe is a senior Web Developer"
+				},
+				{
+				  title: "Jane Doe",
+				  desc: "Jane Doe is a experienced Designer"
+				},
+				{
+				  title: "Jake",
+				  desc: "Software Developer"
+				}
+			  ]
+			  var html = "";
+			  data.forEach(function(value, key) {
+				html += loadTemplate("user-profile-template", data[key]);
+			  });
+			  //Now you have the dynamic html, use wherever you want
+			  document.getElementById("content").innerHTML = html;
+			}
+
+			function loadTemplate(template_id, data) {
+			  var template = document.getElementById(template_id).innerHTML;
+			  return eval('`' + template + '`');
+			}
+		</script>
+	</body>
+</html>
